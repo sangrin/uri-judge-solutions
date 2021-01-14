@@ -1,0 +1,40 @@
+import java.util.Scanner;
+import java.util.Stack;
+
+public class Main {
+
+	private static final Character abre = '(';
+	private static final Character fecha = ')';
+
+	public static boolean verificaBalanceamento(String s) {
+
+		Stack<Character> parentesesStack = new Stack<>();
+
+		for (char c : s.toCharArray()) {
+			if (c == abre) {
+				parentesesStack.push(c);
+			} else if (c == fecha) {
+				if (parentesesStack.isEmpty()) {
+					return false;
+				} else if (parentesesStack.lastElement() == abre) {
+					parentesesStack.pop();
+				}
+			}
+		}
+
+		return parentesesStack.isEmpty();
+	}
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		String linha;
+		do {
+			linha = input.next();
+			if (verificaBalanceamento(linha)) {
+				System.out.println("correct");
+			} else {
+				System.out.println("incorrect");
+			}
+		} while (input.hasNext());
+	}
+}
