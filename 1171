@@ -1,0 +1,49 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+
+
+	public static ArrayList<Integer> numeros = new ArrayList<Integer>();
+	public static ArrayList<Integer> vezes = new ArrayList<Integer>();
+
+	public static void main(String[] args) {
+
+		Scanner input = new Scanner(System.in);
+
+		int n = input.nextInt();
+
+		for (int i=0; i<n;i++) {
+			int valor = input.nextInt();
+			if(numeros.contains(valor)) {
+				int index = numeros.indexOf(valor);
+				vezes.set(index, vezes.get(index)+1);
+			} else {
+				numeros.add(valor);
+				vezes.add(1);
+			}
+		}
+		ordenaVetores();
+		for(int x=0; x<numeros.size(); x++) {
+			System.out.println(numeros.get(x) + " aparece " + vezes.get(x) + " vez(es)");
+		}
+	}
+	
+	public static void ordenaVetores() {
+		for(int i = 0; i<numeros.size(); i++){
+			for(int j = 0; j<numeros.size()-1; j++){
+				if(numeros.get(j) > numeros.get(j+1)){
+					int aux = numeros.get(j);
+					numeros.set(j, numeros.get(j+1));
+					numeros.set(j+1, aux);
+					
+
+					int auxVezes = vezes.get(j);
+					vezes.set(j, vezes.get(j+1));
+					vezes.set(j+1, auxVezes);
+				}
+			}
+		}
+	}
+
+}
