@@ -1,0 +1,18 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+
+		int idFuncionario = input.nextInt();
+		int horaTrabalhada = input.nextInt();
+		double salarioHora = input.nextDouble();
+		double salarioTotal = salarioHora * horaTrabalhada;
+
+		input.close();
+
+		System.out.println("NUMBER = " + idFuncionario);
+		System.out.printf("SALARY = U$ %.2f%n", salarioTotal);
+	}
+}
