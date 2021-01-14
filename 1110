@@ -1,0 +1,46 @@
+//For some reason, URI Judge throws a time limit exception in this one. Can't find the reason, though.
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main {
+	public static ArrayList<Integer> pilha = new ArrayList<Integer>();
+	public static ArrayList<Integer> cartasDiscatadas = new ArrayList<Integer>();
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+
+		while (true) {
+			pilha.clear();
+
+			int nrCartas = input.nextInt();
+			if (nrCartas == 0) {
+				return;
+			}
+
+			for (int x = 1; x <= nrCartas; x++) {
+				pilha.add(x);
+			}
+
+			while (pilha.size() > 1) {
+				removeTopo();
+				moveCarta();
+			}
+
+			System.out.println("Discarded cards: " + cartasDiscatadas.toString().replace("[", "").replace("]", ""));
+			System.out.println("Remaining card: " + pilha.toString().replace("[", "").replace("]", ""));
+		}
+	}
+
+	public static void moveCarta() {
+		int carta = pilha.get(0);
+		pilha.remove(0);
+		pilha.add(carta);
+	}
+
+	public static void removeTopo() {
+		int carta = pilha.get(0);
+		cartasDiscatadas.add(carta);
+		pilha.remove(0);
+	}
+}
