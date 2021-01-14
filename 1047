@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		int horasInicio = input.nextInt();
+		int minutosInicio = input.nextInt();
+		int horasFim = input.nextInt();
+		int minutosFim = input.nextInt();
+
+		int totalHoras = horasFim - horasInicio;
+		int totalMinutos = minutosFim - minutosInicio;
+
+		if (horasInicio == horasFim) {
+            if (minutosInicio == minutosFim) {
+                System.out.println("O JOGO DUROU 24 HORA(S) E 0 MINUTO(S)");
+            }
+            if (minutosInicio > minutosFim) {
+                totalHoras = 23;
+                totalMinutos = 60 + (minutosFim - minutosInicio);
+                System.out.println("O JOGO DUROU " + totalHoras + " HORA(S) E " + totalMinutos + " MINUTO(S)");
+            }
+            if (minutosInicio < minutosFim) {
+                System.out.println("O JOGO DUROU " + totalHoras + " HORA(S) E " + totalMinutos + " MINUTO(S)");
+            }
+        } else if (horasInicio > horasFim) {
+            totalHoras = 24 - (horasInicio - horasFim);
+            if (minutosInicio == minutosFim) {
+                System.out.println("O JOGO DUROU " + totalHoras + " HORA(S) E 0 MINUTO(S)");
+            } else if (minutosInicio > minutosFim){
+                totalMinutos = 60 + totalMinutos;
+                totalHoras = 23 + (horasFim - horasInicio);
+                System.out.println("O JOGO DUROU " + totalHoras + " HORA(S) E " + totalMinutos + " MINUTO(S)");
+            }
+        } else if (totalMinutos < 0) {
+            totalHoras--;
+            totalMinutos = 60 + totalMinutos;
+            System.out.println("O JOGO DUROU " + totalHoras + " HORA(S) E " + totalMinutos + " MINUTO(S)");
+        } else {
+            System.out.println("O JOGO DUROU " + totalHoras + " HORA(S) E " + totalMinutos + " MINUTO(S)");
+        }
+	}
+}
